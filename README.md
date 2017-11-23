@@ -11,3 +11,5 @@ The hashing function used is SHA1 or MD5 due to performance reasons
 The algorithm to find the collisions is brute force, hash everyone in M1 and save it, hash everyone in M2, compare with the ones stored and remove the ones that doesn't have a collision, hash everyone in M3 and compare with the ones stored and remove the ones that doesn't have a collision...
 
 Conclusions
+
+# Implementation Plan
