@@ -20,11 +20,11 @@ The Algorithm has 2 Modules:
 
 1. Collision Check flow:
 
-..1. Create M1, M2, M3 with size of n - this possibly can be too much for the memory to store, it is a good idea to find another hash function to easily generate each message on each set (an int -> hash function maybe)
+  1. Create M1, M2, M3 with size of n - this possibly can be too much for the memory to store, it is a good idea to find another hash function to easily generate each message on each set (an int -> hash function maybe)
 
-..2. Receive the size of M1, M2 and M3.
+  2. Receive the size of M1, M2 and M3.
 
-..3. Search for triple collision using the following algorithm (not optimized pseudo code):
+  3. Search for triple collision using the following algorithm (not optimized pseudo code):
 
 ```
 stored_hashes_first_round = []
