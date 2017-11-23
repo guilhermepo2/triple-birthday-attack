@@ -13,3 +13,7 @@ The algorithm to find the collisions is brute force, hash everyone in M1 and sav
 Conclusions
 
 # Implementation Plan
+
+1. test
+2. test
+3. test
