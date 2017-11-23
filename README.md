@@ -18,7 +18,7 @@ The Algorithm has 2 Modules:
 1. **Collision Check:** Given a fixed ammount of work n and the size of M1, M2, M3, where (|M1| + |M2| + |M3| = n) this module will check the sets searching for triple collision and store the messages that originated the collision.
 2. **Evolutive Algorithm:** Given the the vector with the size of each set i = (M1,M2,M3) as an individual and being the fitness the ammoumt of collisions found for a given i, this module will perform crossover and mutation operations on the population to search for the optimal individual.
 
-1. Collision Check flow:
+3. Collision Check flow:
 
   * Create M1, M2, M3 with size of n - this possibly can be too much for the memory to store, it is a good idea to find another hash function to easily generate each message on each set (an int -> hash function maybe)
 
@@ -43,5 +43,11 @@ for each m3 in M3:
 
 return collisions
 ```
+
+4. Evolutive Algorithm:
+  * Initialize population with x individuals, where each individual is (|M1|, |M2|, |M3|) initialized randomly, respecting the rule that (|M1| + |M2| + |M3| = n).
+  * Calculate the fitness where the fitness is the ammount of collisions for the individual (for a more reliable fitness, create many M1, M2 and M3).
+  * Create a new population with crossover and mutation, do not touch the top 10% of the population, evaluate the population again. Survival of the fittest.
+  * Do this for a certain ammount of generations.
 
 
