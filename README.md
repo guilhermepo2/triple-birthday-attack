@@ -14,6 +14,29 @@ Conclusions
 
 # Implementation Plan
 
-1. test
-2. test
-3. test
+The Algorithm has 2 Modules:
+1. **Collision Check:** Given a fixed ammount of work n and the size of M1, M2, M3, where (|M1| + |M2| + |M3| = n) this module will check the sets searching for triple collision and store the messages that originated the collision.
+2. **Evolutive Algorithm:** Given the the vector with the size of each set i = (M1,M2,M3) as an individual and being the fitness the ammoumt of collisions found for a given i, this module will perform crossover and mutation operations on the population to search for the optimal individual.
+
+1. Collision Check flow:
+..1. Create M1, M2, M3 with size of n - this possibly can be too much for the memory to store, it is a good idea to find another hash function to easily generate each message on each set (an int -> hash function maybe)
+..2. Receive the size of M1, M2 and M3.
+..3. Search for triple collision using the following algorithm (not optimized pseudo code):
+
+```
+stored_hashes_first_round = []
+stored_hashes_second_round = []
+stored_hashes_third_round = []
+collisions = 0
+for each m1 in M1:
+  stored_hashes_first_round.add(hash(m1))
+for each m2 in M2:
+  if(hash(m2) in stored_hashes_first_round):
+    stored_hashes_second_round.add(hash(m2))
+for each m3 in M3:
+  if(hash(m3) in stored_hashes_second_round):
+    stored_hashes_third_round.add(hash(m3))
+    collisions += 1
+
+return collisions
+```
