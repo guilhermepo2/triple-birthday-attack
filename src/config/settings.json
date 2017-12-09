@@ -1,0 +1,6 @@
+{
+    "populationSize": 10,
+    "generations": 10,
+    "crossoverRate": 0.8,
+    "mutationRate": 0.05
+}

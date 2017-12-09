@@ -8,7 +8,8 @@ solveEverything(int m1, int m2, int m3) {
     hashwrapper * myMD5Wrapper = new md5wrapper();
     hashwrapper * mySHA1Wrapper = new sha1wrapper();
 
-    // Searching for triple collisions
+    // Searching for triple collisions (not optimized) 
+
     std::vector<std::string> stored_hashes_first_round;
     std::vector<std::string> stored_hashes_second_round;
     int collisions = 0;
@@ -43,6 +44,6 @@ solveEverything(int m1, int m2, int m3) {
 
 int 
 main() {
-    solveEverything(3333, 3333, 3334);
+    solveEverything(1, 200, 799);
     return 0;
 }
