@@ -10,11 +10,11 @@ private:
 public:
     std::vector<Individual> individuals;
     Population(int);
-    const inline int getPopulationSize()                      { return this->populationSize; }
+    inline int getPopulationSize() const                      { return this->populationSize; }
     inline void setPopulationSize(int s)                      { this->populationSize = s;    }
-    const inline bool getInitialized()                        { return this->initialized;    }
+    inline bool getInitialized() const                        { return this->initialized;    }
     inline void setInitialized(bool b)                        { this->initialized = b;       }
-    const inline std::vector<Individual> getIndividualsCopy() { return this->individuals;    }
+    inline std::vector<Individual> getIndividualsCopy() const { return this->individuals;    }
 };
 
 #endif
