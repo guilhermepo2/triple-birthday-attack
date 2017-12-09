@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
-#include "individual.hpp"
-#include "../../libs/catch.hpp"
+#include "ea/individual/individual.hpp"
+#include "libs/catch.hpp"
 
 TEST_CASE("Creating Individual without parameters", "[individual]") {
     Individual i;

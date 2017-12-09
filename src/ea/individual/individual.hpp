@@ -1,6 +1,8 @@
 #ifndef __INDIVIDUAL__
 #define __INDIVIDUAL__
 
+#include "libs/dependencies.hpp"
+
 class
 Individual {
 private:
