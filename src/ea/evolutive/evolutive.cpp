@@ -15,14 +15,22 @@ Evolutive::Evolutive(const char * settingsFile) {
     float cRate = eaSettings["crossoverRate"];
     float mRate = eaSettings["mutationRate"];
     int generations = eaSettings["generations"];
+    int hashBudget = eaSettings["hashBudget"];
 
     this->population = new Population(pSize);
     this->crossoverRate = cRate;
     this->mutationRate = mRate;
     this->generations = generations;
+    this->hashBudget = hashBudget;
 }
 
 Evolutive::~Evolutive() {
     // delete all pointers
-    delete population;
+    //delete population;
+    //delete generation;
+}
+
+void Evolutive::initPopulation() {
+    this->generation->generatePopulation(this->population->getPopulationSize(),
+    this->population->individuals);
 }

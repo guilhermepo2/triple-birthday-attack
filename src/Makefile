@@ -9,7 +9,7 @@ individualTest:
 populationTest:
 	g++ -std=c++11 -I. tests/populationTest.cpp ea/population/population.cpp
 eaTest:
-	g++ -std=c++11 -I. tests/eaTest.cpp ea/evolutive/evolutive.cpp ea/population/population.cpp
+	g++ -std=c++11 -I. tests/eaTest.cpp ea/evolutive/evolutive.cpp ea/population/population.cpp ea/individual/individual.cpp
 
 tests: tests/individualTest.cpp tests/populationTest.cpp tests/eaPopulation.test
 	make individualTest && ./a.out && make populationTest && ./a.out && make eaTest && ./a.out
