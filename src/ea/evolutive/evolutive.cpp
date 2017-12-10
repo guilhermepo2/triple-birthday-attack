@@ -29,6 +29,7 @@ Evolutive::~Evolutive() {
     if(population!= NULL) delete population;
     if(generation != NULL) delete generation;
     if(fitness != NULL) delete fitness;
+    if(parentSelection != NULL) delete parentSelection;
 }
 
 void Evolutive::initPopulation() {
@@ -40,4 +41,8 @@ void Evolutive::calculateFitness() {
     for(int i = 0; i < this->population->getPopulationSize(); i++) {
         this->fitness->calculateFitness(this->population->individuals[i]);
     }
+}
+
+int Evolutive::selectParent() {
+    return (this->parentSelection->selectParent(this->population->getPopulationSize(), this->population->individuals));
 }

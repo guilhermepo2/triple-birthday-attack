@@ -53,5 +53,28 @@ TEST_CASE("Testing Fitness Calculation", "[evolutive]") {
                   << e.population->individuals[i].getFitness()
                   << std::endl;
     }
+}
 
+TEST_CASE("Testing Parent Selection", "[evolutive]") {
+    Evolutive e("config/initializationTest.json");
+    Operators::GenerateAllRandom * gen = new Operators::GenerateAllRandom();
+    gen->setMaxHash(e.getHashBudget());
+    e.generation = gen;
+    e.fitness = new Operators::BruteForceCollisionCheck();
+    e.parentSelection = new Operators::RandomParentSelection();
+    e.initPopulation();
+
+    int parent1 = -1;
+    int parent2 = -1;
+    int parent3 = -1;
+    parent1 = e.selectParent();
+    parent2 = e.selectParent();
+    parent3 = e.selectParent();
+    std::cout << "Selected Parent: " << parent1 << std::endl;
+    std::cout << "Selected Parent: " << parent2 << std::endl;
+    std::cout << "Selected Parent: " << parent3 << std::endl;
+
+    REQUIRE( parent1 != -1 );
+    REQUIRE( parent2 != -1 );
+    REQUIRE( parent3 != -1 );
 }

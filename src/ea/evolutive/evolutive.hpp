@@ -14,11 +14,13 @@ public:
     Population * population = NULL;
     Operators::PopulationGeneration * generation = NULL;
     Operators::FitnessFunction * fitness = NULL;
+    Operators::ParentSelection * parentSelection = NULL;
 
     Evolutive(const char *);
     ~Evolutive();
     void initPopulation();
     void calculateFitness();
+    int selectParent();
 
     inline float getCrossoverRate() const  { return this->crossoverRate; }
     inline float getMutationRate() const   { return this->mutationRate;  }

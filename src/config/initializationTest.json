@@ -3,5 +3,5 @@
     "generations": 10,
     "crossoverRate": 0.8,
     "mutationRate": 0.05,
-    "hashBudget": 10000
+    "hashBudget": 1000
 }

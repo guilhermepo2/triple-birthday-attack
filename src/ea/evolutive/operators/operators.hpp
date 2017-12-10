@@ -3,5 +3,6 @@
 
 #include "ea/evolutive/operators/initialization.hpp"
 #include "ea/evolutive/operators/fitness.hpp"
+#include "ea/evolutive/operators/parentSelection.hpp"
 
 #endif
