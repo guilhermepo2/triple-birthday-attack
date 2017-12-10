@@ -78,3 +78,34 @@ TEST_CASE("Testing Parent Selection", "[evolutive]") {
     REQUIRE( parent2 != -1 );
     REQUIRE( parent3 != -1 );
 }
+
+TEST_CASE("Testing Crossover", "[evolutive]") {
+    Evolutive e("config/initializationTest.json");
+    Operators::GenerateAllRandom * gen = new Operators::GenerateAllRandom();
+    gen->setMaxHash(e.getHashBudget());
+    e.generation = gen;
+    e.fitness = new Operators::BruteForceCollisionCheck();
+    e.parentSelection = new Operators::RandomParentSelection();
+    e.crossover = new Operators::ThreeChildrenCrossover();
+    e.crossover->setHashBudget(e.getHashBudget());
+    e.initPopulation();
+
+    std::cout << "Testing Crossover..." << std::endl;
+    std::cout << "BEFORE: population.size(): " << e.population->individuals.size() << std::endl;
+    e.performCrossover();
+    std::cout << "AFTER: population.size(): " << e.population->individuals.size() << std::endl;
+
+    for(int i = 0; i < e.population->individuals.size(); i++) {
+        int m1 = e.population->individuals[i].getM1();
+        int m2 = e.population->individuals[i].getM2();
+        int m3 = e.population->individuals[i].getM3();
+
+        REQUIRE( ( (m1 + m2 + m3 ) == e.getHashBudget()) );
+
+        std::cout << "Individual " << i+1 << " - M1: " << e.population->individuals[i].getM1()
+                  << " M2: " << e.population->individuals[i].getM2()
+                  << " M3: " << e.population->individuals[i].getM3()
+                  << " SUM: " << e.population->individuals[i].getM1() + e.population->individuals[i].getM2() + e.population->individuals[i].getM3()
+                  << std::endl; 
+    }
+}

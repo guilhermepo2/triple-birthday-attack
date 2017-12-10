@@ -4,5 +4,6 @@
 #include "ea/evolutive/operators/initialization.hpp"
 #include "ea/evolutive/operators/fitness.hpp"
 #include "ea/evolutive/operators/parentSelection.hpp"
+#include "ea/evolutive/operators/crossover.hpp"
 
 #endif

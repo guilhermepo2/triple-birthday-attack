@@ -30,6 +30,7 @@ Evolutive::~Evolutive() {
     if(generation != NULL) delete generation;
     if(fitness != NULL) delete fitness;
     if(parentSelection != NULL) delete parentSelection;
+    if(crossover != NULL) delete crossover;
 }
 
 void Evolutive::initPopulation() {
@@ -45,4 +46,19 @@ void Evolutive::calculateFitness() {
 
 int Evolutive::selectParent() {
     return (this->parentSelection->selectParent(this->population->getPopulationSize(), this->population->individuals));
+}
+
+void Evolutive::performCrossover() {
+    while(this->population->individuals.size() > this->population->getPopulationSize()) {
+        this->population->individuals.pop_back();
+    }
+
+    int maxSize = this->population->getPopulationSize() + std::ceil(this->crossoverRate * this->population->getPopulationSize());
+    while(this->population->individuals.size() < maxSize) {
+        int p1 = this->selectParent();
+        int p2 = this->selectParent();
+        while(p2 == p1) p2 = this->selectParent();
+
+        this->crossover->crossover(this->population->individuals[p1], this->population->individuals[p2], this->population->individuals);
+    }
 }

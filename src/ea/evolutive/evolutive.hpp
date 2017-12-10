@@ -15,12 +15,14 @@ public:
     Operators::PopulationGeneration * generation = NULL;
     Operators::FitnessFunction * fitness = NULL;
     Operators::ParentSelection * parentSelection = NULL;
+    Operators::Crossover * crossover = NULL;
 
     Evolutive(const char *);
     ~Evolutive();
     void initPopulation();
     void calculateFitness();
     int selectParent();
+    void performCrossover();
 
     inline float getCrossoverRate() const  { return this->crossoverRate; }
     inline float getMutationRate() const   { return this->mutationRate;  }
