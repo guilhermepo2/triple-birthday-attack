@@ -26,11 +26,18 @@ Evolutive::Evolutive(const char * settingsFile) {
 
 Evolutive::~Evolutive() {
     // delete all pointers
-    //delete population;
-    //delete generation;
+    if(population!= NULL) delete population;
+    if(generation != NULL) delete generation;
+    if(fitness != NULL) delete fitness;
 }
 
 void Evolutive::initPopulation() {
     this->generation->generatePopulation(this->population->getPopulationSize(),
     this->population->individuals);
+}
+
+void Evolutive::calculateFitness() {
+    for(int i = 0; i < this->population->getPopulationSize(); i++) {
+        this->fitness->calculateFitness(this->population->individuals[i]);
+    }
 }

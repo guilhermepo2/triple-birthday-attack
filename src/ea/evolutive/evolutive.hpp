@@ -11,12 +11,14 @@ private:
     int generations;
     int hashBudget;
 public:
-    Population * population;
-    Operators::PopulationGeneration * generation;
+    Population * population = NULL;
+    Operators::PopulationGeneration * generation = NULL;
+    Operators::FitnessFunction * fitness = NULL;
 
     Evolutive(const char *);
     ~Evolutive();
     void initPopulation();
+    void calculateFitness();
 
     inline float getCrossoverRate() const  { return this->crossoverRate; }
     inline float getMutationRate() const   { return this->mutationRate;  }

@@ -36,3 +36,22 @@ TEST_CASE("Testing Population Initialization", "[evolutive]") {
                   << std::endl; 
     }
 }
+
+TEST_CASE("Testing Fitness Calculation", "[evolutive]") {
+    Evolutive e("config/initializationTest.json");
+    Operators::GenerateAllRandom * gen = new Operators::GenerateAllRandom();
+    gen->setMaxHash(e.getHashBudget());
+    e.generation = gen;
+    e.fitness = new Operators::BruteForceCollisionCheck();
+    e.initPopulation();
+    e.calculateFitness();
+
+    std::cout << "Printing Population with Fitness" << std::endl;
+    for(int i = 0; i < e.population->getPopulationSize(); i++) {
+        std::cout << "Individual " << i+1
+                  << " has fitness of "
+                  << e.population->individuals[i].getFitness()
+                  << std::endl;
+    }
+
+}

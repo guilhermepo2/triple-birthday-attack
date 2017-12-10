@@ -7,5 +7,6 @@
 #include <ctime>
 #include "libs/json.hpp"
 using json = nlohmann::json;
+#include "libs/hash2lib/src/hashlibpp.h"
 
 #endif
