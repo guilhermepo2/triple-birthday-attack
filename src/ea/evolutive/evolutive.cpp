@@ -31,6 +31,7 @@ Evolutive::~Evolutive() {
     if(fitness != NULL) delete fitness;
     if(parentSelection != NULL) delete parentSelection;
     if(crossover != NULL) delete crossover;
+    if(mutation != NULL) delete mutation;
 }
 
 void Evolutive::initPopulation() {
@@ -60,5 +61,18 @@ void Evolutive::performCrossover() {
         while(p2 == p1) p2 = this->selectParent();
 
         this->crossover->crossover(this->population->individuals[p1], this->population->individuals[p2], this->population->individuals);
+    }
+}
+
+void Evolutive::performMutation() {
+    int rate = this->mutationRate * 100;
+    int choice;
+
+    for(int i = this->population->getPopulationSize(); i <  this->population->individuals.size(); i++) {
+        choice = rand() % 100;
+
+        if(choice <= rate) {
+            this->mutation->mutate(this->population->individuals[i]);
+        }
     }
 }

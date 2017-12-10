@@ -16,6 +16,7 @@ public:
     Operators::FitnessFunction * fitness = NULL;
     Operators::ParentSelection * parentSelection = NULL;
     Operators::Crossover * crossover = NULL;
+    Operators::Mutation * mutation = NULL;
 
     Evolutive(const char *);
     ~Evolutive();
@@ -23,6 +24,7 @@ public:
     void calculateFitness();
     int selectParent();
     void performCrossover();
+    void performMutation();
 
     inline float getCrossoverRate() const  { return this->crossoverRate; }
     inline float getMutationRate() const   { return this->mutationRate;  }
