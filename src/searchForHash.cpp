@@ -19,17 +19,17 @@ solveEverything(int m1, int m2, int m3) {
     for(int i = m1; i < (m1+m2); i++) { // 333 to 665
         bool isOnFirstRound = false;
         for(int j = 0; j < stored_hashes_first_round.size(); j++) {
-            if(mySHA1Wrapper->getHashFromString(std::to_string(i)) == stored_hashes_first_round[j]) {
+            if(mySHA1Wrapper->getHashFromString(myMD5Wrapper->getHashFromString(std::to_string(i)) == stored_hashes_first_round[j]) {
                 isOnFirstRound = true;
             }
         }
-        if(isOnFirstRound) stored_hashes_second_round.push_back(mySHA1Wrapper->getHashFromString(std::to_string(i)));
+        if(isOnFirstRound) stored_hashes_second_round.push_back(mySHA1Wrapper->getHashFromString(myMD5Wrapper->getHashFromString(std::to_string(i)));
     }
 
     for(int i = (m1+m2); i < (m1+m2+m3); i++) { // 666 to 1000
         bool isOnSecondRound = false;
         for(int j = 0; j < stored_hashes_second_round.size(); j++) {
-            if(mySHA1Wrapper->getHashFromString(std::to_string(i)) == stored_hashes_second_round[j]) {
+            if(mySHA1Wrapper->getHashFromString(myMD5Wrapper->getHashFromString(std::to_string(i)) == stored_hashes_second_round[j]) {
                 isOnSecondRound = true;
             }
         }
