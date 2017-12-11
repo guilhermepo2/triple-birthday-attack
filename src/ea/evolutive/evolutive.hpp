@@ -18,6 +18,7 @@ public:
     Operators::Crossover * crossover = NULL;
     Operators::Mutation * mutation = NULL;
     Operators::Survival * survival = NULL;
+    Operators::Sorting * sorting = NULL;
 
     Evolutive(const char *);
     ~Evolutive();
@@ -27,6 +28,7 @@ public:
     void performCrossover();
     void performMutation();
     void survivalOfTheFittest();
+    void sort();
 
     inline float getCrossoverRate() const  { return this->crossoverRate; }
     inline float getMutationRate() const   { return this->mutationRate;  }

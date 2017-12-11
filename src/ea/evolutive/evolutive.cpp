@@ -81,3 +81,7 @@ void Evolutive::performMutation() {
 void Evolutive::survivalOfTheFittest() {
     this->survival->survival(this->population->individuals);
 }
+
+void Evolutive::sort() {
+    this->sorting->sort(this->population->individuals);
+}

@@ -168,3 +168,31 @@ TEST_CASE("Testing Survival", "[evolutive]") {
 
     REQUIRE(e.population->individuals.size() == e.population->getPopulationSize());
 }
+
+TEST_CASE("Testing Sorting", "[evolutive]") {
+    Evolutive e("config/initializationTest.json");
+    Operators::GenerateAllRandom * gen = new Operators::GenerateAllRandom();
+    gen->setMaxHash(e.getHashBudget());
+    e.generation = gen;
+    e.fitness = new Operators::BruteForceCollisionCheck();
+    e.parentSelection = new Operators::RandomParentSelection();
+    e.crossover = new Operators::ThreeChildrenCrossover();
+    e.crossover->setHashBudget(e.getHashBudget());
+    e.mutation = new Operators::SimpleMutation();
+    e.mutation->setHashBudget(e.getHashBudget());
+    Operators::Elitism * eltsm = new Operators::Elitism();
+    eltsm->setOriginalPopulationSize(e.population->getPopulationSize());
+    eltsm->setSurvivalRate(1.0f - e.getCrossoverRate());
+    e.survival = eltsm;
+    e.sorting = new Operators::BubbleSort();
+
+    e.initPopulation();
+    e.calculateFitness();
+    e.performCrossover();
+    e.performMutation();
+    e.sort();
+    
+    for(int i = 0; i < e.population->individuals.size() - 1; i++) {
+        REQUIRE(e.population->individuals[i].getFitness() >= e.population->individuals[i+1].getFitness());
+    }
+}
