@@ -6,38 +6,39 @@ int main() {
 
     // Setting Random Population Initialization
     Operators::GenerateAllRandom * gen = new Operators::GenerateAllRandom();
-    gen->setMaxHash(e->getHashBudget()); // BAD (FIX)
-    e->generation = gen;
+    gen->setMaxHash(evolutiveAlgorithm->getHashBudget()); // BAD (FIX)
+    evolutiveAlgorithm->generation = gen;
 
     // Setting Fitness Function
-    e->fitness = new Operators::BruteForceCollisionCheck();
+    evolutiveAlgorithm->fitness = new Operators::BruteForceCollisionCheck();
 
     // Setting Parent Selection Method
-    e->parentSelection = new Operators::RandomParentSelection();
+    evolutiveAlgorithm->parentSelection = new Operators::RandomParentSelection();
 
     // Setting Crossover Method
-    e->crossover = new Operators::ThreeChildrenCrossover();
-    e->crossover->setHashBudget(e->getHashBudget()); // BAD (FIX)
+    evolutiveAlgorithm->crossover = new Operators::ThreeChildrenCrossover();
+    evolutiveAlgorithm->crossover->setHashBudget(evolutiveAlgorithm->getHashBudget()); // BAD (FIX)
 
     // Setting Mutation Method
-    e->mutation = new Operators::SimpleMutation();
-    e->mutation->setHashBudget(e.getHashBudget()); // BAD (FIX)
+    evolutiveAlgorithm->mutation = new Operators::SimpleMutation();
+    evolutiveAlgorithm->mutation->setHashBudget(evolutiveAlgorithm->getHashBudget()); // BAD (FIX)
 
     // Setting Survival Method
     Operators::Elitism * eltsm = new Operators::Elitism(); // BAD (FIX)
-    eltsm->setOriginalPopulationSize(e->population->getPopulationSize()); // BAD BAD (FIX)
-    eltsm->setSurvivalRate(1.0f - e.getCrossoverRate()); //  BAD BAD BAD (FIX)
-    e->survival = eltsm;
+    eltsm->setOriginalPopulationSize(evolutiveAlgorithm->population->getPopulationSize()); // BAD BAD (FIX)
+    eltsm->setSurvivalRate(1.0f - evolutiveAlgorithm->getCrossoverRate()); //  BAD BAD BAD (FIX)
+    evolutiveAlgorithm->survival = eltsm;
 
     // EVOLUTIVE ALGORITHM STARTS HERE
-    e->initPopulation();
-    e->calculateFitness();
-    for(int i = 0; i < e->getGenerations(); i++) {
-        e->sort();
-        std::cout << "Best Candidate has " << e->population->individuals[0].getFitness() << "collisions" << std::endl;
-        e->performCrossover();
-        e->performMutation();
-        e->survivalOfTheFittest();
+    evolutiveAlgorithm->initPopulation();
+    evolutiveAlgorithm->calculateFitness();
+    std::cout << "Running for " << evolutiveAlgorithm->getGenerations() << " generations." << std::endl;
+    for(int i = 0; i < evolutiveAlgorithm->getGenerations(); i++) {
+        evolutiveAlgorithm->sort();
+        std::cout << "Best Candidate has " << evolutiveAlgorithm->population->individuals[0].getFitness() << "collisions" << std::endl;
+        evolutiveAlgorithm->performCrossover();
+        evolutiveAlgorithm->performMutation();
+        evolutiveAlgorithm->survivalOfTheFittest();
     }
     
     delete evolutiveAlgorithm;
