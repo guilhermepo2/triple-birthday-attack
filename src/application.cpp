@@ -29,13 +29,16 @@ int main() {
     eltsm->setSurvivalRate(1.0f - evolutiveAlgorithm->getCrossoverRate()); //  BAD BAD BAD (FIX)
     evolutiveAlgorithm->survival = eltsm;
 
+    // Setting Sort Method
+    evolutiveAlgorithm->sorting = new Operators::BubbleSort();
+
     // EVOLUTIVE ALGORITHM STARTS HERE
     evolutiveAlgorithm->initPopulation();
-    evolutiveAlgorithm->calculateFitness();
     std::cout << "Running for " << evolutiveAlgorithm->getGenerations() << " generations." << std::endl;
     for(int i = 0; i < evolutiveAlgorithm->getGenerations(); i++) {
+        evolutiveAlgorithm->calculateFitness();
         evolutiveAlgorithm->sort();
-        std::cout << "Best Candidate has " << evolutiveAlgorithm->population->individuals[0].getFitness() << "collisions" << std::endl;
+        std::cout << i+1 << " - Best Candidate has " << evolutiveAlgorithm->population->individuals[0].getFitness() << " collisions" << std::endl;
         evolutiveAlgorithm->performCrossover();
         evolutiveAlgorithm->performMutation();
         evolutiveAlgorithm->survivalOfTheFittest();
