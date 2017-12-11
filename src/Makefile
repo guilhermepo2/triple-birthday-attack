@@ -7,5 +7,6 @@ populationTest:
 	g++ -std=c++11 -I. tests/populationTest.cpp ea/population/population.cpp
 eaTest:
 	g++ -std=c++11 -I. tests/eaTest.cpp ea/evolutive/evolutive.cpp ea/population/population.cpp ea/individual/individual.cpp libs/hash2lib/src/hl_sha1wrapper.cpp libs/hash2lib/src/hl_sha1.cpp libs/hash2lib/src/hl_md5wrapper.cpp libs/hash2lib/src/hl_md5.cpp
-tests: tests/individualTest.cpp tests/populationTest.cpp tests/eaPopulation.test
+
+tests: tests/individualTest.cpp tests/populationTest.cpp tests/eaTest.cpp
 	make individualTest && ./a.out && make populationTest && ./a.out && make eaTest && ./a.out

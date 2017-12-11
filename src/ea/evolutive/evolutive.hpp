@@ -17,6 +17,7 @@ public:
     Operators::ParentSelection * parentSelection = NULL;
     Operators::Crossover * crossover = NULL;
     Operators::Mutation * mutation = NULL;
+    Operators::Survival * survival = NULL;
 
     Evolutive(const char *);
     ~Evolutive();
@@ -25,6 +26,7 @@ public:
     int selectParent();
     void performCrossover();
     void performMutation();
+    void survivalOfTheFittest();
 
     inline float getCrossoverRate() const  { return this->crossoverRate; }
     inline float getMutationRate() const   { return this->mutationRate;  }

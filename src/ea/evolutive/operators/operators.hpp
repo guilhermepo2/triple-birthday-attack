@@ -6,5 +6,6 @@
 #include "ea/evolutive/operators/parentSelection.hpp"
 #include "ea/evolutive/operators/crossover.hpp"
 #include "ea/evolutive/operators/mutation.hpp"
+#include "ea/evolutive/operators/survival.hpp"
 
 #endif

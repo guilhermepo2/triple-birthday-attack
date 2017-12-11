@@ -141,3 +141,30 @@ TEST_CASE("Testing Mutation", "[evolutive]") {
                   << std::endl; 
     }
 }
+
+TEST_CASE("Testing Survival", "[evolutive]") {
+    Evolutive e("config/initializationTest.json");
+    Operators::GenerateAllRandom * gen = new Operators::GenerateAllRandom();
+    gen->setMaxHash(e.getHashBudget());
+    e.generation = gen;
+    e.fitness = new Operators::BruteForceCollisionCheck();
+    e.parentSelection = new Operators::RandomParentSelection();
+    e.crossover = new Operators::ThreeChildrenCrossover();
+    e.crossover->setHashBudget(e.getHashBudget());
+    e.mutation = new Operators::SimpleMutation();
+    e.mutation->setHashBudget(e.getHashBudget());
+    Operators::Elitism * eltsm = new Operators::Elitism();
+    eltsm->setOriginalPopulationSize(e.population->getPopulationSize());
+    eltsm->setSurvivalRate(1.0f - e.getCrossoverRate());
+    e.survival = eltsm;
+
+    e.initPopulation();
+    e.performCrossover();
+    e.performMutation();
+
+    std::cout << "Size before survival: " << e.population->individuals.size() << std::endl;
+    e.survivalOfTheFittest();
+    std::cout << "Size after survival: " << e.population->individuals.size() << std::endl;
+
+    REQUIRE(e.population->individuals.size() == e.population->getPopulationSize());
+}

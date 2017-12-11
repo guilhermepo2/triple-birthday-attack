@@ -32,6 +32,7 @@ Evolutive::~Evolutive() {
     if(parentSelection != NULL) delete parentSelection;
     if(crossover != NULL) delete crossover;
     if(mutation != NULL) delete mutation;
+    if(survival != NULL) delete survival;
 }
 
 void Evolutive::initPopulation() {
@@ -75,4 +76,8 @@ void Evolutive::performMutation() {
             this->mutation->mutate(this->population->individuals[i]);
         }
     }
+}
+
+void Evolutive::survivalOfTheFittest() {
+    this->survival->survival(this->population->individuals);
 }
