@@ -45,3 +45,14 @@ return collisions
   * Calculate the fitness where the fitness is the ammount of collisions for the individual (for a more reliable fitness, create many M1, M2 and M3).
   * Create a new population with crossover and mutation, do not touch the top 10% of the population, evaluate the population again. Survival of the fittest.
   * Do this for a certain ammount of generations.
+
+  # Issues
+
+  1. BIT_DIV (a constant that 'cuts' the hashed message for smaller hashes) is hard coded, it would be better if it were a parameter included on init.json
+  2. Code duplicate for checking if an individual is already on population, on the crossover and on the mutation file.
+  3. Hash budget coded on the population initialization, crossover and mutation.
+  4. Having to set parameters on the elitism before assigning it to the survival method.
+  5. The Only Sorting Method Implemented is Bubble Sort.
+  6. Algorithm can spend too much time on Crossover trying to find individuals that aren't on the population, there isn't a cap.
+  7. Population can get flooded by best individuals, there is few ways to leave local maxima.
+  8. Mutation adding and subtracting a random from 0 to 10% of the hash budget, maybe it's weak, maybe it's too strong, it would also be good if it were a parameter.
