@@ -16,10 +16,11 @@ namespace Statistics {
         file << "Hash Budget: " << e->getHashBudget() << "\n";
         file << "Hash Function: ";
         #if HASH_WITH_SHA1
-        file << "SHA1";
+        file << "SHA1 with " << (40 / BIT_DIV) * 4 << " bits. ";
         #else
-        file << "MD5";
+        file << "MD5 with " << (32 / BIT_DIV) * 4 << " bits.;
         #endif
+
         file << "\n";
         file << "FINAL POPULATION:\n";
 
