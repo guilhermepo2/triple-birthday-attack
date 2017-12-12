@@ -7,6 +7,18 @@ namespace Operators {
     class Crossover {
         protected:
         int hashBudget;
+
+        bool notRepeated(Individual individual, std::vector<Individual> population) {
+            for(int i = 0; i < population.size(); i++) {
+                if(individual.getM1() == population[i].getM1() &&
+                   individual.getM2() == population[i].getM2() &&
+                   individual.getM3() == population[i].getM3()) {
+                    return false;
+                }
+            }
+            return true;
+        } 
+
         public:
         inline void setHashBudget(int b) { this->hashBudget = b; }
         virtual void crossover(Individual firstParent, Individual secondParent, std::vector<Individual>& population) {
@@ -34,9 +46,9 @@ namespace Operators {
             thirdChild.setM1(secondParent.getM1());
             thirdChild.setM2((this->hashBudget - (thirdChild.getM3() + thirdChild.getM1())));
 
-            if(firstChild.getM1() > 0 && firstChild.getM2() > 0 && firstChild.getM3() > 0) population.push_back(firstChild);
-            if(secondChild.getM1() > 0 && secondChild.getM2() > 0 && secondChild.getM3() > 0)  population.push_back(secondChild);
-            if(thirdChild.getM1() > 0 && thirdChild.getM2() > 0 && thirdChild.getM3() > 0)  population.push_back(thirdChild);
+            if(firstChild.getM1() > 0 && firstChild.getM2() > 0 && firstChild.getM3() > 0 && this->notRepeated(firstChild, population)) population.push_back(firstChild);
+            if(secondChild.getM1() > 0 && secondChild.getM2() > 0 && secondChild.getM3() > 0 && this->notRepeated(secondChild, population))  population.push_back(secondChild);
+            if(thirdChild.getM1() > 0 && thirdChild.getM2() > 0 && thirdChild.getM3() > 0 && this->notRepeated(thirdChild, population))  population.push_back(thirdChild);
         }
     };
 }

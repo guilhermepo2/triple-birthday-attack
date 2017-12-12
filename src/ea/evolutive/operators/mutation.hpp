@@ -58,7 +58,7 @@ namespace Operators {
 
              if(individual.getM1() < 0 || individual.getM1() > this->hashBudget ||
                 individual.getM2() < 0 || individual.getM2() > this->hashBudget ||
-                individual.getM3() < 0 || individual.getM3() > this->hashBudget) {
+                individual.getM3() < 0 || individual.getM3() > this->hashBudget ) {
                     individual.setM1(oldM1);
                     individual.setM2(oldM2);
                     individual.setM3(oldM3);

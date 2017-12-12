@@ -33,17 +33,20 @@ int main() {
     evolutiveAlgorithm->sorting = new Operators::BubbleSort();
 
     // EVOLUTIVE ALGORITHM STARTS HERE
-    evolutiveAlgorithm->initPopulation();
     std::cout << "Running for " << evolutiveAlgorithm->getGenerations() << " generations." << std::endl;
     std::cout << "Population Size: " << evolutiveAlgorithm->population->getPopulationSize() << " Hash Budget: " << evolutiveAlgorithm->getHashBudget() << std::endl;
     std::cout << "Hash Function SHA1 with " << (40 / BIT_DIV) * 4 << " bits." << std::endl;
+    
+    evolutiveAlgorithm->initPopulation();
+    evolutiveAlgorithm->calculateFitness();
+    evolutiveAlgorithm->sort();
     for(int i = 0; i < evolutiveAlgorithm->getGenerations(); i++) {
-        evolutiveAlgorithm->calculateFitness();
-        evolutiveAlgorithm->sort();
         std::cout << i+1 << " - Best Candidate has " << evolutiveAlgorithm->population->individuals[0].getFitness() << " collisions" << std::endl;
         evolutiveAlgorithm->performCrossover();
         evolutiveAlgorithm->performMutation();
         evolutiveAlgorithm->survivalOfTheFittest();
+        evolutiveAlgorithm->calculateFitness();
+        evolutiveAlgorithm->sort();
     }
 
     std::cout << "The algorithm is over. final population below" << std::endl;
