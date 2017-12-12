@@ -35,6 +35,8 @@ int main() {
     // EVOLUTIVE ALGORITHM STARTS HERE
     evolutiveAlgorithm->initPopulation();
     std::cout << "Running for " << evolutiveAlgorithm->getGenerations() << " generations." << std::endl;
+    std::cout << "Population Size: " << evolutiveAlgorithm->population->getPopulationSize() << " Hash Budget: " << evolutiveAlgorithm->getHashBudget() << std::endl;
+    std::cout << "Hash Function SHA1 with " << (40 / BIT_DIV) * 4 << " bits." << std::endl;
     for(int i = 0; i < evolutiveAlgorithm->getGenerations(); i++) {
         evolutiveAlgorithm->calculateFitness();
         evolutiveAlgorithm->sort();
@@ -42,6 +44,15 @@ int main() {
         evolutiveAlgorithm->performCrossover();
         evolutiveAlgorithm->performMutation();
         evolutiveAlgorithm->survivalOfTheFittest();
+    }
+
+    std::cout << "The algorithm is over. final population below" << std::endl;
+    for(int i = 0; i < evolutiveAlgorithm->population->getPopulationSize(); i++) {
+        std::cout << "Individual " << (i+1) << " M1: " << evolutiveAlgorithm->population->individuals[i].getM1()
+                                            << " M2: " << evolutiveAlgorithm->population->individuals[i].getM2()
+                                            << " M3: " << evolutiveAlgorithm->population->individuals[i].getM3()
+                                            << " Fitness: " << evolutiveAlgorithm->population->individuals[i].getFitness()
+                                            << std::endl;
     }
     
     delete evolutiveAlgorithm;

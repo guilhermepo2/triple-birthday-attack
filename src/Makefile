@@ -11,5 +11,8 @@ eaTest:
 tests: tests/individualTest.cpp tests/populationTest.cpp tests/eaTest.cpp
 	make individualTest && ./a.out && make populationTest && ./a.out && make eaTest && ./a.out
 
+hashTest:
+	g++ -O3 -std=c++11 -I. tests/hashFunctionTest.cpp ea/evolutive/evolutive.cpp ea/population/population.cpp ea/individual/individual.cpp libs/hash2lib/src/hl_sha1wrapper.cpp libs/hash2lib/src/hl_sha1.cpp libs/hash2lib/src/hl_md5wrapper.cpp libs/hash2lib/src/hl_md5.cpp
+
 application:
 	g++ -O3 -std=c++11 -I. application.cpp ea/evolutive/evolutive.cpp ea/population/population.cpp ea/individual/individual.cpp libs/hash2lib/src/hl_sha1wrapper.cpp libs/hash2lib/src/hl_sha1.cpp libs/hash2lib/src/hl_md5wrapper.cpp libs/hash2lib/src/hl_md5.cpp
