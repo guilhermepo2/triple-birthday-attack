@@ -1,4 +1,5 @@
 #include "ea/evolutive/evolutive.hpp"
+#include "ea/statistics/statistics.hpp"
 
 int main() {
     std::cout << "Initializing Evolutive Algorithm..." << std::endl;
@@ -35,7 +36,13 @@ int main() {
     // EVOLUTIVE ALGORITHM STARTS HERE
     std::cout << "Running for " << evolutiveAlgorithm->getGenerations() << " generations." << std::endl;
     std::cout << "Population Size: " << evolutiveAlgorithm->population->getPopulationSize() << " Hash Budget: " << evolutiveAlgorithm->getHashBudget() << std::endl;
-    std::cout << "Hash Function SHA1 with " << (40 / BIT_DIV) * 4 << " bits." << std::endl;
+    std::cout << "Hash Function ";
+    #if HASH_WITH_SHA1
+    std::cout << "SHA1 with " << (40/BIT_DIV) * 4 << " bits.";
+    #else
+    std::cout << "MD5 with " << (32/BIT_DIV) * 4 << " bits.";
+    #endif
+    std::cout << std::endl;
     
     evolutiveAlgorithm->initPopulation();
     evolutiveAlgorithm->calculateFitness();
@@ -57,6 +64,8 @@ int main() {
                                             << " Fitness: " << evolutiveAlgorithm->population->individuals[i].getFitness()
                                             << std::endl;
     }
+
+    Statistics::logExecution(evolutiveAlgorithm, "output/log.txt");
     
     delete evolutiveAlgorithm;
     return 0;

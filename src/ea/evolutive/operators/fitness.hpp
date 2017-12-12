@@ -11,6 +11,8 @@
 // BIT_DIV 2 = size 20 =  80 bits
 // BIT_DIV 1 = size 40 = 160 bits
 #define BIT_DIV 10
+#define HASH_WITH_SHA1 1
+
 
 #include "ea/evolutive/evolutive.hpp"
 
@@ -29,7 +31,11 @@ namespace Operators {
 
             std::string getHashFromInt(int n) {
                 std::string msg = md5->getHashFromString(std::to_string(n));
+                #if HASH_WITH_SHA1
                 std::string hash = sha1->getHashFromString(msg);
+                #else
+                std::string hash = md5->getHashFromString(msg);
+                #endif
                 hash = hash.substr(0, (hash.size() / BIT_DIV));
                 return hash;
             }

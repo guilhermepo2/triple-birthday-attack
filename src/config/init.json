@@ -1,7 +1,7 @@
 {
     "populationSize": 50,
-    "generations": 500,
-    "crossoverRate": 0.6,
+    "generations": 100,
+    "crossoverRate": 0.8,
     "mutationRate": 0.5,
     "hashBudget": 5000
 }

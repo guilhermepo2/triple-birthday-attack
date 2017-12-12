@@ -56,3 +56,4 @@ return collisions
   6. Algorithm can spend too much time on Crossover trying to find individuals that aren't on the population, there isn't a cap.
   7. Population can get flooded by best individuals, there is few ways to leave local maxima.
   8. Mutation adding and subtracting a random from 0 to 10% of the hash budget, maybe it's weak, maybe it's too strong, it would also be good if it were a parameter.
+  9. Deciding if hashing function used is MD5 or SHA1 via macro (hard coded), also bad.
