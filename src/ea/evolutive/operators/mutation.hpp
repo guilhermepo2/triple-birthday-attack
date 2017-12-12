@@ -7,9 +7,20 @@ namespace Operators {
     class Mutation {
         protected:
         int hashBudget;
+        bool notRepeated(Individual individual, std::vector<Individual> population) {
+            for(int i = 0; i < population.size(); i++) {
+                if(individual.getM1() == population[i].getM1() &&
+                   individual.getM2() == population[i].getM2() &&
+                   individual.getM3() == population[i].getM3()) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public:
         inline void setHashBudget(int b) { this->hashBudget = b; }
-        virtual void mutate(Individual& individual) {
+        virtual void mutate(Individual& individual, std::vector<Individual> population) {
             std::cout << "I'm a virtual mutation method. If you are reading this, you did something wrong." << std::endl;
         }
     };
@@ -22,7 +33,7 @@ namespace Operators {
     // N is random from 0 to 10
     class SimpleMutation : public Mutation {
         public:
-        void mutate(Individual& individual) {
+        void mutate(Individual& individual, std::vector<Individual> population) {
              int toAdd = rand() % 3;
              int toSubtract = rand() % 3;
              while(toAdd == toSubtract) toSubtract = rand() % 3;
@@ -58,7 +69,8 @@ namespace Operators {
 
              if(individual.getM1() < 0 || individual.getM1() > this->hashBudget ||
                 individual.getM2() < 0 || individual.getM2() > this->hashBudget ||
-                individual.getM3() < 0 || individual.getM3() > this->hashBudget ) {
+                individual.getM3() < 0 || individual.getM3() > this->hashBudget  ||
+                !(this->notRepeated(individual, population))) {
                     individual.setM1(oldM1);
                     individual.setM2(oldM2);
                     individual.setM3(oldM3);

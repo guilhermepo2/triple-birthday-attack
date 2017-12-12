@@ -73,7 +73,7 @@ void Evolutive::performMutation() {
         choice = rand() % 100;
 
         if(choice <= rate) {
-            this->mutation->mutate(this->population->individuals[i]);
+            this->mutation->mutate(this->population->individuals[i], this->population->individuals);
         }
     }
 }
