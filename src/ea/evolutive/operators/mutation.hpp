@@ -42,7 +42,7 @@ namespace Operators {
             int oldM2 = individual.getM2();
             int oldM3 = individual.getM3();
 
-             int factor = rand() % (this->hashBudget * 0.1f);
+             int factor = rand() % (int)(this->hashBudget * 0.1f);
              switch(toAdd) {
                  case 0:
                     individual.setM1(individual.getM1() + factor);
