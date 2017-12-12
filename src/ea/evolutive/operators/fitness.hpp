@@ -10,7 +10,7 @@
 // BIT_DIV 4 = size 10 =  40 bits
 // BIT_DIV 2 = size 20 =  80 bits
 // BIT_DIV 1 = size 40 = 160 bits
-#define BIT_DIV 20
+#define BIT_DIV 10
 
 #include "ea/evolutive/evolutive.hpp"
 
